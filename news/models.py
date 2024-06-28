@@ -17,10 +17,12 @@ class News(models.Model):
     title =models.CharField(max_length=250)
     content = models.TextField()
     image = models.ImageField()
+    
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     pub_date = models.DateField(auto_now_add=True)
     created_by = models.ForeignKey (User, on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add= True)
+    image_link = models.URLField(blank=True,null=True)
 
     class META :
         ordering =['title']

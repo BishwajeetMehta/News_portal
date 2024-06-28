@@ -8,5 +8,5 @@ class category (admin.ModelAdmin):
 
 @admin.register(News)
 class News (admin.ModelAdmin):
-    list_display = ("id","title","content","image","category","pub_date","created_by","created_at")
+    list_display = ("id","title","content","image","category","pub_date","created_by","created_at",'image_link')
 

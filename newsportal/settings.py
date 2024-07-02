@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'news_api',
     'news',
     'account',
     'auditlog' # for auditlog
@@ -138,3 +140,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 
 AUTH_USER_MODEL = 'account.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}

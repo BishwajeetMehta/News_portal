@@ -5,6 +5,7 @@ from auditlog.models import AuditlogHistoryField
 from auditlog.registry import auditlog
 # Create your models here.
 class Category(models.Model):
+    objects = None
     name = models.CharField(max_length=255)
     display_in_home = models.BooleanField(default=False)
     history = AuditlogHistoryField()
@@ -18,6 +19,7 @@ class Category(models.Model):
         return self.name
     
 class News(models.Model):
+    objects = None
     title =models.CharField(max_length=250)
     content = models.TextField()
     image = models.ImageField(blank=True,null=True)

@@ -20,10 +20,14 @@
                             <div class="single-slider">
                                 <div class="trending-top mb-30">
                                     <div class="trend-top-img">
-                                        <img src="/media/{{trending.image}}" alt="">
+                                        {% if trending.image %}
+                                        <img src="/media/{{trending.image}}" alt="Unavailable">
+                                        {% else %}
+                                        <img src="{{trending.image_link}}" alt="Unavailable" >
+                                        {% endif %}
                                         <div class="trend-top-cap">
                                             <span class="bgr" data-animation="fadeInUp" data-delay=".2s" data-duration="1000ms">{{trending.category}}</span>
-                                            <h2><a href="latest_news.html" data-animation="fadeInUp" data-delay=".4s" data-duration="1000ms">{{trending.title}}</a></h2>
+                                            <h2><a href="{% url 'Description' trending.id  %}" data-animation="fadeInUp" data-delay=".4s" data-duration="1000ms">{{trending.title}}</a></h2>
                                             <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">by {{trending.created_by}}   -   {{trending.pub_date}}</p>
                                         </div>
                                     </div>
@@ -42,29 +46,22 @@
                                 {% for right_trending in right_trending  %}
                                 <div class="trending-top mb-30">
                                     <div class="trend-top-img">
-                                        <img src="/media/{{right_trending.image}}" alt="">
+                                        {% if right_trending.image %}
+                                        <img src="/media/{{right_trending.image}}" alt="Unavailable">
+                                        {% else %}
+                                        <img src="{{right_trending.image_link}}" alt="Unavailable" >
+                                        {% endif %}
                                         <div class="trend-top-cap trend-top-cap2">
                                             <span class="bgb">{{right_trending.category}}</span>
-                                            <h2><a href="latest_news.html">
+                                            <h2><a href="{% url 'Description' right_trending.id %}">
                                                 {{right_trending.title}}</a></h2>
-                                            <p>by Alice cloe   -   {{right_trending.pub_date}}</p>
+                                            <p>by {{right_trending.created_by}}   -   {{right_trending.pub_date}}</p>
                                         </div>
                                     </div>
                                 </div>
                                 {% endfor %}
                             </div>
-                            {% comment %} <div class="col-lg-12 col-md-6 col-sm-6">
-                                <div class="trending-top mb-30">
-                                    <div class="trend-top-img">
-                                        <img src="{% static 'assets/img/trending/trending_top4.jpg' %}" alt="">
-                                        <div class="trend-top-cap trend-top-cap2">
-                                            <span class="bgg">TECH </span>
-                                            <h2><a href="latest_news.html">Secretart for Economic Air plane that looks like</a></h2>
-                                            <p>by Alice cloe   -   Jun 19, 2020</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> {% endcomment %}
+                          
                         </div>
                     </div>
                 </div>
@@ -121,15 +118,15 @@
                                             <div class="whats-news-single mb-40 mb-40">
                                                 <div class="whates-img">
                                                     {% if nw.image %}
-                                                    <img src="/media/{{nw.image}}" alt="">
+                                                    <img src="/media/{{nw.image}}" alt="Unavailable">
                                                     {% else %}
-                                                    <img src="{{nw.image_link}}" alt="">
+                                                    <img src="{{nw.image_link}}" alt="Unavailable" >
                                                     {% endif %}
                                                 </div>
                                                 <div class="whates-caption">
-                                                    <h4><a href="latest_news.html">{{nw.title}}</a></h4>
+                                                    <h4><a href="{% url 'Description' nw.id %}">{{nw.title}}</a></h4>
                                                     <span>by {{nw.created_by}}  -   {{nw.pub_date}}</span>
-                                                    <p>{{nw.content}}</p>
+                                                    <p>{{nw.content|safe|truncatechars:350}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -145,14 +142,14 @@
                                                     <div class="whats-right-single mb-20">
                                                         <div class="whats-right-img">
                                                             {% if nw.image %}
-                                                            <img src="/media/{{nw.image}}" alt="">
+                                                            <img src="/media/{{nw.image}}" alt="Unavailable" height="100px" width="200px">
                                                             {% else %}
-                                                            <img src="{{nw.image_link}}" alt="">
+                                                            <img src="{{nw.image_link}}" alt="Unavailable" height="100px" width="200px">
                                                             {% endif %}
                                                         </div>
                                                         <div class="whats-right-cap">
                                                             <span class="colorb">{{nw.category}}</span>
-                                                            <h4><a href="latest_news.html">{{nw.title}}</a></h4>
+                                                            <h4><a href="{% url 'Description' nw.id %}">{{nw.title}}</a></h4>
                                                             <p>{{nw.pub_date}}</p> 
                                                         </div>
                                                     </div>
@@ -173,7 +170,7 @@
                 </div>
                 <!-- Banner -->
                 <div class="banner-one mt-20 mb-30">
-                    <img src="assets/img/gallery/body_card1.png" alt="">
+                    <img src="{% static 'assets/img/gallery/body_card1.png' %}" alt="">
                 </div>
                 </div>
                 <div class="col-lg-4">
@@ -182,7 +179,7 @@
                         <div class="single-box">
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
-                                    <a href="#"><img src="assets/img/news/icon-fb.png" alt=""></a>
+                                    <a href="#"><img src="{% static 'assets/img/news/icon-fb.png' %}" alt=""></a>
                                 </div>
                                 <div class="follow-count">  
                                     <span>8,045</span>
@@ -191,7 +188,7 @@
                             </div> 
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
-                                    <a href="#"><img src="assets/img/news/icon-tw.png" alt=""></a>
+                                    <a href="#"><img src="{% static 'assets/img/news/icon-tw.png' %}" alt=""></a>
                                 </div>
                                 <div class="follow-count">
                                     <span>8,045</span>
@@ -200,7 +197,7 @@
                             </div>
                                 <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
-                                    <a href="#"><img src="assets/img/news/icon-ins.png" alt=""></a>
+                                    <a href="#"><img src="{% static 'assets/img/news/icon-ins.png' %}" alt=""></a>
                                 </div>
                                 <div class="follow-count">
                                     <span>8,045</span>
@@ -209,7 +206,7 @@
                             </div>
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
-                                    <a href="#"><img src="assets/img/news/icon-yo.png" alt=""></a>
+                                    <a href="#"><img src="{% static 'assets/img/news/icon-yo.png' %}" alt=""></a>
                                 </div>
                                 <div class="follow-count">
                                     <span>8,045</span>
@@ -226,36 +223,42 @@
                         </div>
                         <!-- Details -->
                         <div class="most-recent mb-40">
+                            {% for nw in most_recent %}
+                                {% if forloop.first %}
                             <div class="most-recent-img">
-                                <img src="assets/img/gallery/most_recent.png" alt="">
+                                {% if nw.image %}
+                                <img src="/media/{{nw.image}}" alt="Unavailable" >
+                                {% else %}
+                                <img src="{{nw.image_link}}" alt="Unavailable" >
+                                {% endif %}
+                               
                                 <div class="most-recent-cap">
-                                    <span class="bgbeg">Vogue</span>
-                                    <h4><a href="latest_news.html">What to Wear: 9+ Cute Work <br>
-                                        Outfits to Wear This.</a></h4>
-                                    <p>Jhon  |  2 hours ago</p>
+                                    <span class="bgbeg">{{nw.category}}</span>
+                                    <h4><a href="{% url "Description" nw.id %}">{{nw.title}} 
+                                        </a></h4>
+                                    <p>{{nw.created_by}}  |  {{nw.pub_date}}</p>
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
                         <!-- Single -->
-                        <div class="most-recent-single">
+                         {% if not forloop.first %}
+                         <div class="most-recent-single">
                             <div class="most-recent-images">
-                                <img src="assets/img/gallery/most_recent1.png" alt="">
+                                {% if nw.image %}
+                                <img src="/media/{{nw.image}}" alt="Unavailable" height="100px" width="200px">
+                                {% else %}
+                                <img src="{{nw.image_link}}" alt="Unavailable" height="100px" width="200px">
+                                {% endif %}
                             </div>
                             <div class="most-recent-capt">
-                                <h4><a href="latest_news.html">Scarlett’s disappointment at latest accolade</a></h4>
-                                <p>Jhon  |  2 hours ago</p>
+                                <h4><a href="{% url 'Description' nw.id %}">{{nw.title}}</a></h4>
+                                <p>{{nw.created_by}}  |  {{nw.pub_date}}</p>
                             </div>
-                        </div>
-                        <!-- Single -->
-                        <div class="most-recent-single">
-                            <div class="most-recent-images">
-                                <img src="assets/img/gallery/most_recent2.png" alt="">
-                            </div>
-                            <div class="most-recent-capt">
-                                <h4><a href="latest_news.html">Most Beautiful Things to Do in Sidney with Your BF</a></h4>
-                                <p>Jhon  |  3 hours ago</p>
-                            </div>
-                        </div>
+                        </div> 
+                        {% endif %}
+                        {% endfor %}
+
                     </div>
                 </div>
             </div>
@@ -270,7 +273,7 @@
                     <!-- Banner -->
                     <div class="col-lg-3">
                         <div class="home-banner2 d-none d-lg-block">
-                            <img src="assets/img/gallery/body_card2.png" alt="">
+                            <img src="{% static 'assets/img/gallery/body_card2.png' %}" alt="">
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -287,46 +290,23 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="weekly2-news-active d-flex">
+                                        {% for nw in most_popular %}
                                         <!-- Single -->
                                         <div class="weekly2-single">
                                             <div class="weekly2-img">
-                                                <img src="assets/img/gallery/weeklyNews1.png" alt="">
+                                                {% if nw.image %}
+                                                <img src="/media/{{nw.image}}" alt="Unavailable" >
+                                                {% else %}
+                                                <img src="{{nw.image_link}}" alt="Unavailable" >
+                                                {% endif %}
                                             </div>
                                             <div class="weekly2-caption">
-                                                <h4><a href="#">Scarlett’s disappointment at latest accolade</a></h4>
-                                                <p>Jhon  |  2 hours ago</p>
+                                                <h4><a href="{% url 'Description' nw.id %}">{{nw.title}}</a></h4>
+                                                <p>{{nw.created_by}}  |  {{nw.pub_date}}</p>
                                             </div>
                                         </div> 
-                                        <!-- Single -->
-                                        <div class="weekly2-single">
-                                            <div class="weekly2-img">
-                                                <img src="assets/img/gallery/weeklyNews2.png" alt="">
-                                            </div>
-                                            <div class="weekly2-caption">
-                                                <h4><a href="#">Scarlett’s disappointment at latest accolade</a></h4>
-                                                <p>Jhon  |  2 hours ago</p>
-                                            </div>
-                                        </div> 
-                                        <!-- Single -->
-                                        <div class="weekly2-single">
-                                            <div class="weekly2-img">
-                                                <img src="assets/img/gallery/weeklyNews3.png" alt="">
-                                            </div>
-                                            <div class="weekly2-caption">
-                                                <h4><a href="#">Scarlett’s disappointment at latest accolade</a></h4>
-                                                <p>Jhon  |  2 hours ago</p>
-                                            </div>
-                                        </div> 
-                                        <!-- Single -->
-                                        <div class="weekly2-single">
-                                            <div class="weekly2-img">
-                                                <img src="assets/img/gallery/weeklyNews2.png" alt="">
-                                            </div>
-                                            <div class="weekly2-caption">
-                                                <h4><a href="#">Scarlett’s disappointment at latest accolade</a></h4>
-                                                <p>Jhon  |  2 hours ago</p>
-                                            </div>
-                                        </div> 
+                                        {% endfor %}
+
                                     </div>
                                 </div>
                             </div>
@@ -337,73 +317,7 @@
         </div>
     </div>           
     <!-- End Weekly-News -->
-    <!--  Recent Articles start -->
-    <div class="recent-articles pt-80 pb-80">
-        <div class="container">
-            <div class="recent-wrapper">
-                <!-- section Tittle -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-tittle mb-30">
-                            <h3>Trending  News</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="recent-active dot-style d-flex dot-style">
-                            <!-- Single -->
-                            <div class="single-recent">
-                                <div class="what-img">
-                                    <img src="assets/img/gallery/tranding1.png" alt="">
-                                </div>
-                                <div class="what-cap">
-                                    <h4><a href="#" > <h4><a href="latest_news.html">What to Expect From the 2020 Oscar Nomin ations</a></h4></a></h4>
-                                    <P>Jun 19, 2020</P>
-                                    <a class="popup-video btn-icon" href="https://www.youtube.com/watch?v=1aP-TXUpNoU"><span class="flaticon-play-button"></span></a>
-                                    
-                                </div>
-                            </div>
-                            <!-- Single -->
-                            <div class="single-recent">
-                                <div class="what-img">
-                                    <img src="assets/img/gallery/tranding2.png" alt="">
-                                </div>
-                                <div class="what-cap">
-                                    <h4><a href="latest_news.html">What to Expect From the 2020 Oscar Nomin ations</a></h4>
-                                    <P>Jun 19, 2020</P>
-                                    <a class="popup-video" href="https://www.youtube.com/watch?v=1aP-TXUpNoU"><span class="flaticon-play-button"></span></a>
-                                </div>
-                            </div>
-                            <!-- Single -->
-                            <div class="single-recent">
-                                <div class="what-img">
-                                    <img src="assets/img/gallery/tranding1.png" alt="">
-                                </div>
-                                <div class="what-cap">
-                                    <h4><a href="latest_news.html"> <h4><a href="latest_news.html">What to Expect From the 2020 Oscar Nomin ations</a></h4></a></h4>
-                                    <P>Jun 19, 2020</P>
-                                    <a class="popup-video" href="https://www.youtube.com/watch?v=1aP-TXUpNoU"><span class="flaticon-play-button"></span></a>
-                                </div>
-                            </div>
-                            <!-- Single -->
-                            <div class="single-recent">
-                                <div class="what-img">
-                                    <img src="assets/img/gallery/tranding2.png" alt="">
-                                </div>
-                                <div class="what-cap">
-                                    <h4><a href="latest_news.html">What to Expect From the 2020 Oscar Nomin ations</a></h4>
-                                    <P>Jun 19, 2020</P>
-                                    <a class="popup-video" href="https://www.youtube.com/watch?v=1aP-TXUpNoU"><span class="flaticon-play-button"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>           
-    <!--Recent Articles End -->
+    
     <!-- Start Video Area -->
     <div class="youtube-area video-padding d-none d-sm-block">
         <div class="container">
@@ -510,51 +424,21 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="weekly3-news-active dot-style d-flex">
+                                        {% for nw in corsel %}
                                         <div class="weekly3-single">
                                             <div class="weekly3-img">
-                                                <img src="assets/img/gallery/weekly2News1.png" alt="">
+                                                {% if nw.image %}
+                                                <img src="/media/{{nw.image}}" alt="Unavailable" >
+                                                {% else %}
+                                                <img src="{{nw.image_link}}" alt="Unavailable" >
+                                                {% endif %}
                                             </div>
                                             <div class="weekly3-caption">
-                                                <h4><a href="latest_news.html">What to Expect From the 2020 Oscar Nomin ations</a></h4>
-                                                <p>19 Jan 2020</p>
+                                                <h4><a href="{% url 'Description' nw.id %}">{{nw.title}}</a></h4>
+                                                <p>{{nw.pub_date}}</p>
                                             </div>
                                         </div> 
-                                        <div class="weekly3-single">
-                                            <div class="weekly3-img">
-                                                <img src="assets/img/gallery/weekly2News2.png" alt="">
-                                            </div>
-                                            <div class="weekly3-caption">
-                                                <h4><a href="latest_news.html">What to Expect From the 2020 Oscar Nomin ations</a></h4>
-                                                <p>19 Jan 2020</p>
-                                            </div>
-                                        </div> 
-                                        <div class="weekly3-single">
-                                            <div class="weekly3-img">
-                                                <img src="assets/img/gallery/weekly2News3.png" alt="">
-                                            </div>
-                                            <div class="weekly3-caption">
-                                                <h4><a href="latest_news.html">What to Expect From the 2020 Oscar Nomin ations</a></h4>
-                                                <p>19 Jan 2020</p>
-                                            </div>
-                                        </div>
-                                        <div class="weekly3-single">
-                                            <div class="weekly3-img">
-                                                <img src="assets/img/gallery/weekly2News4.png" alt="">
-                                            </div>
-                                            <div class="weekly3-caption">
-                                                <h4><a href="latest_news.html">What to Expect From the 2020 Oscar Nomin ations</a></h4>
-                                                <p>19 Jan 2020</p>
-                                            </div>
-                                        </div> 
-                                        <div class="weekly3-single">
-                                            <div class="weekly3-img">
-                                                <img src="assets/img/gallery/weekly2News2.png" alt="">
-                                            </div>
-                                            <div class="weekly3-caption">
-                                                <h4><a href="latest_news.html">What to Expect From the 2020 Oscar Nomin ations</a></h4>
-                                                <p>19 Jan 2020</p>
-                                            </div>
-                                        </div> 
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -571,7 +455,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-10">
                     <div class="banner-one">
-                        <img src="assets/img/gallery/body_card3.png" alt="">
+                        <img src="{% static 'assets/img/gallery/body_card3.png' %}" alt="">
                     </div>
                 </div>
             </div>

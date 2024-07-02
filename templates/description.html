@@ -1,0 +1,45 @@
+
+{% extends "master.html" %}
+{% block title %}
+ Description
+{% endblock title %}
+{% load static %}
+{% block content %}
+<main>
+    <!-- About US Start -->
+    <div class="about-area2 gray-bg pt-60 pb-60">
+        <div class="container">
+                <div class="row">
+                   
+                        <!-- Trending Tittle -->
+                        <div class="about-right mb-90">
+                            <div class="about-img">
+                                {% if news.image %}
+                                <img src="/media/{{news.image}}" alt="" >
+                                {% else %}
+                                <img src="{{news.image_link}}" alt="" >
+                                {% endif %}
+                            </div>
+                            <div class="heading-news mb-30 pt-30">
+                                <b><h4 style="color: red;">{{news.category}}</h4></b>
+                                <h3> {{news.title}}</h3>
+                                
+                            </div>
+                            <div class="about-prea">
+                                <p class="about-pera1 mb-25">Moms are like…buttons? Moms are like glue. Moms are like pizza crusts. Moms are the ones who make sure things happen—from birth to school lunch.</p>
+                               
+                                <p class="about-pera1 mb-25">
+                                  {{news.content}}</p>
+                            </div> 
+
+                            
+                        </div>
+                       
+                  
+                </div>
+        </div>
+    </div>
+    <!-- About US End -->
+</main>
+
+{% endblock content %}

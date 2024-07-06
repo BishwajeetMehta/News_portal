@@ -169,9 +169,13 @@
                     </div>
                 </div>
                 <!-- Banner -->
+                 {% for ads in ads%}
                 <div class="banner-one mt-20 mb-30">
-                    <img src="{% static 'assets/img/gallery/body_card1.png' %}" alt="">
+                    {% if ads.position == 'middle' %}
+                    <img src="/media/{{ads.banner}}" alt="" height="250px">
+                    {% endif %}
                 </div>
+                {% endfor %}
                 </div>
                 <div class="col-lg-4">
                     <!-- Flow Socail -->
@@ -272,9 +276,13 @@
                 <div class="row">
                     <!-- Banner -->
                     <div class="col-lg-3">
+                        {% for ads in ads %}
                         <div class="home-banner2 d-none d-lg-block">
-                            <img src="{% static 'assets/img/gallery/body_card2.png' %}" alt="">
+                            {% if ads.position == 'left' %}
+                            <img src="/media/{{ads.banner}}" alt="Unavailable"  height="400px">
+                            {% endif %}
                         </div>
+                        {% endfor %}
                     </div>
                     <div class="col-lg-9">
                         <div class="slider-wrapper">
@@ -326,31 +334,31 @@
                     <div class="video-items-active">
                         <div class="video-items text-center">
                             <video controls>
-                                <source src="assets/video/news2.mp4" type="video/mp4">
+                                <source src="{% static 'assets/video/news2.mp4' %}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
                         <div class="video-items text-center">
                             <video controls>
-                                <source src="assets/video/news1.mp4" type="video/mp4">
+                                <source src="{% static 'assets/video/news1.mp4' %}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
                         <div class="video-items text-center">
                             <video controls>
-                                <source src="assets/video/news3.mp4" type="video/mp4">
+                                <source src="{% static 'assets/video/news3.mp4' %}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
                         <div class="video-items text-center">
                             <video controls>
-                                <source src="assets/video/news1.mp4" type="video/mp4">
+                                <source src="{% static 'assets/video/news1.mp4' %}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
                         <div class="video-items text-center">
                             <video controls>
-                                <source src="assets/video/news3.mp4" type="video/mp4">
+                                <source src="{% static 'assets/video/news3.mp4' %}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -363,7 +371,7 @@
                         <div class="testmonial-nav text-center">
                             <div class="single-video">
                                 <video controls>
-                                    <source src="assets/video/news2.mp4" type="video/mp4">
+                                    <source src="{% static 'assets/video/news2.mp4' %}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
                                 <div class="video-intro">
@@ -372,7 +380,7 @@
                             </div>
                             <div class="single-video">
                                 <video controls>
-                                    <source src="assets/video/news1.mp4" type="video/mp4">
+                                    <source src="{% static 'assets/video/news1.mp4' %}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
                                 <div class="video-intro">
@@ -381,7 +389,7 @@
                             </div>
                             <div class="single-video">
                                 <video controls>
-                                    <source src="assets/video/news3.mp4" type="video/mp4">
+                                    <source src="{% static 'assets/video/news3.mp4' %}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
                                 <div class="video-intro">
@@ -390,7 +398,7 @@
                             </div>
                             <div class="single-video">
                                 <video controls>
-                                    <source src="assets/video/news1.mp4" type="video/mp4">
+                                    <source src="{% static 'assets/video/news1.mp4' %}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
                                 <div class="video-intro">
@@ -399,7 +407,7 @@
                             </div>
                             <div class="single-video">
                                 <video controls>
-                                    <source src="assets/video/news3.mp4" type="video/mp4">
+                                    <source src="{% static 'assets/video/news3.mp4' %}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
                                 <div class="video-intro">
@@ -454,9 +462,13 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-10">
+                    {% for ads in ads%}
                     <div class="banner-one">
-                        <img src="{% static 'assets/img/gallery/body_card3.png' %}" alt="">
+                        {% if ads.position == 'lower' %}
+                        <img src="/media/{{ads.banner}}" alt="Unavailable"  >
+                        {% endif %}
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

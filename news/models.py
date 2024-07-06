@@ -41,5 +41,63 @@ class News(models.Model):
         return self.title
     
 
+class Ads(models.Model):
+    POSITION_CHOICES = (
+    ('top', "top"),
+    ('lower', "lower"),
+    ('middle', "middle"),
+    ('left', "left"),
+    ('category_page_banner', "category_page_banner"),
+)
+    title = models.CharField(max_length=250)
+    banner = models.ImageField()
+    position = models.CharField(max_length=50,choices=POSITION_CHOICES)
+    history = AuditlogHistoryField()
+
+class SystemSetting(models.Model):
+    name = models.CharField(max_length=250)
+    address = models.CharField(max_length=250)
+    phone = models.CharField(max_length=15)
+    email = models.EmailField()
+    logo = models.ImageField()
+    salogon = models.TextField()
+    history = AuditlogHistoryField()
+
+
+class Mission(models.Model):
+    title = models.TextField()
+    description = models.TextField()
+    created_at = models.DateField(auto_now_add= True)
+
+class Vision(models.Model):
+    title = models.TextField()
+    description = models.TextField()
+    created_at = models.DateField(auto_now_add= True)
+
+class services(models.Model):
+    title = models.TextField()
+    description = models.TextField()
+    created_at = models.DateField(auto_now_add= True)
+
+class Member(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField()
+    phone = models.CharField(max_length=15)
+    post = models.CharField(max_length=100)
+    image = models.ImageField()
+
+
+class Contact(models.Model):
+    Sender = models.CharField(max_length=100)
+    sender_email = models.CharField(max_length=100)
+    subject = models.TextField()
+    message = models.TextField()
+
+    def __str__(self) -> str:
+        return self.Sender
+
+
 auditlog.register(Category, serialize_data=True)
 auditlog.register(News, serialize_data=True)
+auditlog.register(Ads, serialize_data=True)
+auditlog.register(SystemSetting, serialize_data=True)
